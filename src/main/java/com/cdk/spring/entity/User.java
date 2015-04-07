@@ -1,27 +1,28 @@
 package com.cdk.spring.entity;
 
-import org.springframework.stereotype.Repository;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.*;
 
 /**
  * Created by khana on 3/12/2015.
  */
 
-@XmlRootElement
+@IdClass(UserPrimaryKey.class)
 @Entity
 public class User {
 
     @Id
-    @GeneratedValue
     private Long id;
+
+    @Id
     private String name;
 
     public User() {
         // default constructor for hibernate.
+    }
+
+    public User(Long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public User(String name) {
